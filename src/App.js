@@ -1,11 +1,19 @@
 import './App.css';
-
+import { CompanySidebar, AnalyticsSidebar, TwitterSidebar } from "./components/"
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-          <h1>Ion Hakathun ...</h1>
-      </header>
+      <div className='App-header'>
+            <div className='w-1/5 bg-slate-500'>
+              <CompanySidebar/>
+            </div>
+            <div className='w-2/5'>
+              <AnalyticsSidebar/>
+            </div>
+            <div className='w-2/5 bg-neutral-600'>
+              <TwitterSidebar/>
+            </div>
+          </div>
     </div>
   );
 }
