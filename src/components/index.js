@@ -1,3 +1,3 @@
-export { CompanySidebar } from './CompanySidebar';
-export { AnalyticsSidebar } from "./AnalyticsSidebar";
-export { TwitterSidebar } from "./TwitterSidebar";
+export { CompanySidebar } from './companySidebar/CompanySidebar';
+export { AnalyticsSidebar } from "./analyticsSidebar/AnalyticsSidebar";
+export { TwitterSidebar } from "./twitterSidebar/TwitterSidebar";  

@@ -1,5 +1,5 @@
 import './App.css';
-import { CompanySidebar, AnalyticsSidebar, TwitterSidebar } from "./components/"
+import { CompanySidebar, AnalyticsSidebar, TwitterSidebar } from "./components"
 function App() {
   return (
     <div className="App">
