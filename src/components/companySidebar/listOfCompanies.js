@@ -3,5 +3,4 @@ export const listOfCompanies = [
     'Company2',
     'Company3',
     'Company4',
-    'Company5',
 ]

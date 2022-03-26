@@ -41,7 +41,7 @@ export const AnalyticsChart = () => {
         datasets: [
           {
             label: 'Stock prices',
-            data: labels.map(() => [1,2,3,4,5,6]),
+            data: labels.map(() => [1,2,3,4,5]),
             borderColor: 'rgb(255, 99, 132)',
             backgroundColor: 'rgba(255, 99, 132, 0.5)',
           },
