@@ -47,12 +47,9 @@ export const AnalyticsChart = ({apiData}) => {
             data: [apiData.price, apiData.price+apiData.pred],
             borderColor: 'rgb(255, 99, 132)',
             backgroundColor: 'rgba(255, 99, 132, 0.5)',
-            tension: 1.0
           },
         ],
       };
-    const location = useLocation();
-    const company = location.pathname;
 
     return <div>
         <Line style={{margin:'30px'}} data={data} />
