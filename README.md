@@ -1,4 +1,5 @@
-# npm install
-# npm start
-# npm run backendPull
+# $ npm install
+# $ npm run backendPull
+
+# $ npm start
 
