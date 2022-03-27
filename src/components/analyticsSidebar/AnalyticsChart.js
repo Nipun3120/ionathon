@@ -10,6 +10,8 @@ import {
     Legend,
   } from 'chart.js';
   import { Line } from 'react-chartjs-2';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 
 ChartJS.register(
@@ -29,28 +31,31 @@ ChartJS.register(
     const month = months[today.getMonth()];
       const dates = [];
       dates.push(`${currentDate} ${month}`);
-      for(let i=1;i<=10;i++){
+      for(let i=1;i<=1;i++){
           dates.unshift(`${currentDate - i} ${month}`);
       }
       return dates;
   }
-export const AnalyticsChart = () => {
+
+export const AnalyticsChart = ({apiData}) => {
     const labels = calculate10Dates()
     const data = {
         labels,
         datasets: [
           {
             label: 'Stock prices',
-            data: labels.map(() => [1,2,3,4,5]),
+            data: [apiData.price, apiData.price+apiData.pred],
             borderColor: 'rgb(255, 99, 132)',
             backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            tension: 1.0
           },
         ],
       };
     const location = useLocation();
     const company = location.pathname;
+
     return <div>
-        <span>Analytics I am for <br/>{company.substring(1)}</span>
         <Line style={{margin:'30px'}} data={data} />
     </div>
 }
+// data: labels.map(() => [({apiData.price}, {apiData.pred + apiData.price}).toFixed(2)]),
