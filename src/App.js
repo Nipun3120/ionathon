@@ -13,7 +13,7 @@ function App() {
   const dispatch = useDispatch();
 
 
-  const djiaData = async ()=> {
+
     fetch(`${BASE_URL}/`, {
       method: "POST",
       headers: {
@@ -36,9 +36,9 @@ function App() {
         })
         .catch((err) => console.log(err));
     });
-  }
 
-  const niftydata = async()=> {
+
+
     fetch(`${BASE_URL}/`, {
       method: "POST",
       headers: {
@@ -61,9 +61,9 @@ function App() {
         })
         .catch((err) => console.log(err));
     });
-  }
 
-  const appledata = async () => {
+
+
     fetch(`${BASE_URL}/`, {
       method: "POST",
       headers: {
@@ -88,9 +88,10 @@ function App() {
         })
         .catch((err) => console.log(err));
     });
-  };
 
-  const microsoftdata = async()=> {
+
+
+    
     fetch(`${BASE_URL}/`, {
       method: "POST",
       headers: {
@@ -114,27 +115,10 @@ function App() {
         })
         .catch((err) => console.log(err));
     });
-  }
 
-  // Promise.allSettled([
-  //   fetch(`${BASE_URL}/`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "Application/json",
-  //     },
-  //     body: JSON.stringify(apiBody.djia),
-  //   }),
-  // ])
-  //   .then((data) => {
-  //     let filteredData = getFilteredData(data);
-  //     console.log(filteredData);
-  //   })
-  //   .catch((err) => console.error(err));
 
-  djiaData();
-  niftydata();
-  appledata();
-  microsoftdata();
+
+
   useEffect(() => {
     console.log("change", company, typeof company);
 
