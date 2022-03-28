@@ -13,120 +13,117 @@ function App() {
   const dispatch = useDispatch();
 
 
+    useEffect(()=> {
+      const fetchData = async()=> {
 
-    fetch(`${BASE_URL}/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "Application/json",
-      },
-      body: JSON.stringify(apiBody.djia),
-    }).then((data) => {
-      data
-        .json()
-        .then((body) => {
-          dispatch(
-            dataActions.addDjiaData({
-              pred: body.prediction,
-              p_value: body.p_value,
-              corr: body.corr,
-              price: body.prices[0],
-              tweets: body.top,
+
+
+        const djiaData = await fetch(`${BASE_URL}/djia-data/`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "Application/json",
+          },
+        }).then((data) => {
+          data
+            .json()
+            .then((body) => {
+              dispatch(
+                dataActions.addDjiaData({
+                  pred: body.prediction_djia,
+                  p_value: body.p_value,
+                  corr: body.corr,
+                  price: body.prices[0],
+                  tweets: body.top,
+                })
+              );
+              return {"message": "success"}
             })
-          );
-        })
-        .catch((err) => console.log(err));
-    });
-
-
-
-    fetch(`${BASE_URL}/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "Application/json",
-      },
-      body: JSON.stringify(apiBody.nifty),
-    }).then((data) => {
-      data
-        .json()
-        .then((body) => {
-          dispatch(
-            dataActions.addNiftyData({
-              pred: body.prediction,
-              p_value: body.p_value,
-              corr: body.corr,
-              price: body.prices[0],
-              tweets: body.top,
-            })
-          );
-        })
-        .catch((err) => console.log(err));
-    });
-
-
-
-    fetch(`${BASE_URL}/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "Application/json",
-      },
-      body: JSON.stringify(apiBody.apple),
-    }).then((data) => {
-      data
-        .json()
-        .then((body) => {
-          dispatch(
-            dataActions.addAppleData({
-              pred: body.prediction,
-              p_value: body.p_value,
-              corr: body.corr,
-              price: body.prices[0],
-              tweets: body.top,
-              // senti: body.sentiment
-            })
-          );
-          // dispatch(dataActions.apiDataAdded());
-        })
-        .catch((err) => console.log(err));
-    });
-
-
-
+            .catch((err) => console.log(err));
+        });
     
-    fetch(`${BASE_URL}/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "Application/json",
-      },
-      body: JSON.stringify(apiBody.microsoft),
-    }).then((data) => {
-      data
-        .json()
-        .then((body) => {
-          dispatch(
-            dataActions.addMicroData({
-              pred: body.prediction,
-              p_value: body.p_value,
-              corr: body.corr,
-              price: body.prices[0],
-              tweets: body.top,
+    
+    
+        const niftyData = await fetch(`${BASE_URL}/nifty-data/`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "Application/json",
+          },
+        }).then((data) => {
+          data
+            .json()
+            .then((body) => {
+              dispatch(
+                dataActions.addNiftyData({
+                  pred: body.prediction_nifty,
+                  p_value: body.p_value,
+                  corr: body.corr,
+                  price: body.prices[0],
+                  tweets: body.top,
+                })
+              );
+              return {"message": "success"}
             })
-          );
-          dispatch(dataActions.apiDataAdded());
-        })
-        .catch((err) => console.log(err));
-    });
+            .catch((err) => console.log(err));
+        });
+    
+    
+    
+        const appleData = await fetch(`${BASE_URL}/apple-data/`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "Application/json",
+          },
+        }).then((data) => {
+          data
+            .json()
+            .then((body) => {
+              dispatch(
+                dataActions.addAppleData({
+                  pred: body.prediction_apple,
+                  p_value: body.p_value,
+                  corr: body.corr,
+                  price: body.prices[0],
+                  tweets: body.top,
+                  // senti: body.sentiment
+                })
+              );
+              return {"message": "success"}
+              // dispatch(dataActions.apiDataAdded());
+            })
+            .catch((err) => console.log(err));
+        });
+    
+    
+    
+        
+        const microsoftData = await fetch(`${BASE_URL}/microsoft-data/`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "Application/json",
+          },
+        }).then((data) => {
+          data
+            .json()
+            .then((body) => {
+              console.log("microsoft data->", body)
+              dispatch(
+                dataActions.addMicroData({
+                  pred: body.prediction_microsoft,
+                  p_value: body.p_value,
+                  corr: body.corr,
+                  price: body.prices[0],
+                  tweets: body.top,
+                })
+              );
+              dispatch(dataActions.apiDataAdded());
+              return {"message": "success"}
+            })
+            .catch((err) => console.log(err));
+        });
 
-
-
-
-  useEffect(() => {
-    console.log("change", company, typeof company);
-
-    if (company === "/DJIA") dispatch(dataActions.onChange("DJIA"));
-    if (company === "/NIFTY") dispatch(dataActions.onChange("NIFTY"));
-    if (company === "/AAPL") dispatch(dataActions.onChange("AAPL"));
-    if (company === "/MSFT") dispatch(dataActions.onChange("MSFT"));
-  }, [company]);
+      }
+      fetchData();
+    }, [])
 
   return (
     <div className="App">
