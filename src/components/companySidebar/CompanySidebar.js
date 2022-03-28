@@ -14,7 +14,6 @@ export const CompanySidebar = () => {
     const res = data.map((i)=> i.corr.toFixed(2))
     setCorrValues(res);
   }, [dataAdded, curr])
-  console.log(corrValues)
   return (
     <div className="h-full">
       <h3 className="mt-8 mb-8 max-h-screen overflow-scroll">
